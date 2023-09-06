@@ -41,7 +41,7 @@ class Trainer:
     def __init__(self, args):
         self.args = args
 
-        self.model = TMA(num_bins=15)
+        self.model = TMA(input_bins=15)
         self.model = self.model.cuda()
 
         #Loader
