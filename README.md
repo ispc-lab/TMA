@@ -43,7 +43,18 @@ For `train` data, each `.npz` file contains two consecutive event volumes named 
 
 For `test` data, the `.npz` file is indexed by test timestamp, which is useful for generating predictions for [online benchmark](https://dsec.ifi.uzh.ch/uzh/dsec-flow-optical-flow-benchmark/).
 
-### Training
+### Event volumes generation
+```
+cd data_preprocess
+python event_volume_generation.py --event_path 'DSEC/train_events' --gt_path 'DSEC/train_optical_flow' --dst 'dsec/'
+```
+
+```--event_path```: Path where you stored original DSEC train_events.
+
+```--gt_path```: Path where you stored DSEC-Flow train_optical_flow.
+
+```--dst```: Path where you will output event volumes and gt flows.
+### Training Full DSEC-Flow dataset
 ```
 sh train.sh
 ```
@@ -55,6 +66,21 @@ Please choose your expected folder name to save your checkpoints. By default, `c
 ```--checkpoint_dir``` : Path to save checkpoints, here we use `ckpts/` for convenience.
 
 ```--wandb``` : Optional, if you want to visualize training loss.
+
+
+### Training DSEC-Flow split for developing model (Optional)
+```
+python train_split.py --checkpoint_dir 'your_checkpoint_dir/'
+```
+Please assign a directory to save checkpoints by `--checkpoint_dir`. 
+
+If you want to use wandb to visualize the loss, `--wandb` is optional.
+
+Please change the directory of pre-generated event volumes in `datasets/DSEC_split_loader.py`, line `19-24`.
+
+We also provide a split example in `DSEC_split/train/split_example.txt` and `DSEC_split/test/split_example.txt`.
+
+
 
 ### Citation
 If you find this codebase helpful for your research, please cite our paper:
