@@ -2,13 +2,13 @@ from tqdm import tqdm
 import numpy as np
 import torch
 import os
-from datasets.DSECdataloader import DSECdataset
+from datasets.DSEC_split_loader import DSECsplit
 
 
 @torch.no_grad()                   
 def validate_DSEC(model):
     model.eval()
-    val_dataset = DSECdataset('test')
+    val_dataset = DSECsplit('test')
     
     epe_list = []
     out_list = []
