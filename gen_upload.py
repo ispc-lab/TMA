@@ -9,13 +9,12 @@ import glob
 import torch
 import time
 
-####Important####
 from model.TMA import TMA
-####Important####
+
 
 @torch.no_grad()
-def upload_PANet_DSEC(args):
-    model = TMA(num_bins=15)
+def upload_TMA_DSEC(args):
+    model = TMA(input_bins=15)
     ckpt_path = os.path.join(args.checkpoint_dir, args.checkpoint_ed + '.pth')
     ckpt = torch.load(ckpt_path)
     print('Processing ', ckpt_path)
@@ -69,4 +68,4 @@ if __name__=='__main__':
     parser.add_argument('--test_save', default='upload/')
     args = parser.parse_args()
 
-    upload_PANet_DSEC(args)
+    upload_TMA_DSEC(args)
