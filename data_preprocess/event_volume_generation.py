@@ -84,7 +84,7 @@ def transform_event_and_write(events_prev, events_curr, flow_16bit, idx, output_
     #save voxel grids
     np.savez(output_name, voxel_prev=voxel_prev, voxel_curr=voxel_curr)
     #save gt flow
-    np.save(output_name + '_flow', flow_16bit)
+    np.save(output_name, flow_16bit)
 
 
 
